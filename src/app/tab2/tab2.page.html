@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Article Details
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngIf="selectedArticleTitle">
+    <ion-card-header>
+      <ion-card-title>{{ selectedArticleTitle }}</ion-card-title>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <!-- Display the article content here -->
+    </ion-card-content>
+  </ion-card>
+</ion-content>

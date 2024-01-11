@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      News
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Filter Inputs -->
+  <ion-item>
+    <ion-label>Select Country:</ion-label>
+    <ion-select [(ngModel)]="selectedCountry" (ionChange)="updateTopics()">
+      <ion-select-option value="us">United States</ion-select-option>
+      <ion-select-option value="gb">United Kingdom</ion-select-option>
+      <ion-select-option value="sk">Slovakia</ion-select-option>
+      <ion-select-option value="cz">Czechia</ion-select-option>
+      <ion-select-option value="ja">Japan</ion-select-option>
+      <ion-select-option value="ru">Russia</ion-select-option>
+      <!-- Add more countries here -->
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Select Topic:</ion-label>
+    <ion-select [(ngModel)]="selectedTopic">
+      <ion-select-option *ngFor="let topic of topics" [value]="topic">{{ topic }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button (click)="applyFilters()">Apply Filters</ion-button>
+
+  <!-- News Cards -->
+  <ion-card *ngFor="let article of data" (click)="openArticle(article.url)">
+    <ion-card-header>
+      <img [src]="article.urlToImage">
+      <ion-card-title>{{article.title}}</ion-card-title>
+      <ion-card-subtitle>{{article.author}} - {{article.publishedAt | date}}</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{article.description}}
+    </ion-card-content>
+  </ion-card>
+</ion-content>
