@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular'; // Import NavController
 import { GetdataService } from '../getdata.service';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-tab1',
@@ -26,8 +28,8 @@ export class Tab1Page implements OnInit {
 
   constructor(
     private getDataService: GetdataService,
-    private navCtrl: NavController // Inject NavController
-    
+    private navCtrl: NavController, // Inject NavController
+    private router: Router
   ) {}
   
   ngOnInit() {
@@ -54,7 +56,8 @@ export class Tab1Page implements OnInit {
   }
 
   // Function to open the article content page
-  openArticle(url: string) {
-    window.open(url, '_blank');
+  openArticle(newsUrl: string) {
+    this.router.navigate(['tabs/tab2'], { queryParams: { url: newsUrl } });
   }
+
 }
